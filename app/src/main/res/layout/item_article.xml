@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="viewModel"
+            type="com.nytimes.mostpopular.viewmodel.ArticleMasterItemViewModel"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/colorBackground"
+        app:cardCornerRadius="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onItemClick()}">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                app:imageUri="@{viewModel.uri}"
+                app:error="@{@drawable/circular_placeholder}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorGrey"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@{viewModel.title}"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/arrow"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/by_line"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:textColor="@color/colorDarkGrey"
+                android:text="@{viewModel.byLine}"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/arrow"
+                app:layout_constraintTop_toBottomOf="@id/title"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_date"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_date"
+                app:layout_constraintTop_toBottomOf="@id/by_line"
+                app:layout_constraintEnd_toStartOf="@id/published_date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:tint="@color/colorDarkGrey" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/published_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.publishedDate}"
+                android:textSize="12sp"
+                android:textColor="@color/colorDarkGrey"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@id/arrow"
+                app:layout_constraintTop_toBottomOf="@id/by_line"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/arrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_arrow"
+                android:tint="@color/colorDarkGrey" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
